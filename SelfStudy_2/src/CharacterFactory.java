@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class CharacterFactory {
 	///Make CharaList
-	Map<String, Character> charaList = new HashMap<>();
+	Map<String, Character> characterList = new HashMap<>();
 
 	//Make TeamList
 	List<String> team1List = new ArrayList<>();
@@ -13,7 +13,7 @@ public class CharacterFactory {
 	
 	//Input All List
 	CharacterFactory(Map<String, Character> charaList, List<String> team1List, List<String> team2List) {
-		this.charaList = charaList;
+		this.characterList = charaList;
 		this.team1List = team1List;
 		this.team2List = team2List;
 	}
@@ -26,10 +26,10 @@ public class CharacterFactory {
 			//Separate By Job
 			if (job.equals("Warrior")) {
 				Warrior c = new Warrior(name, hp, atk, originalStatus, teamNum);
-				charaList.put(c.getName(), c);
+				characterList.put(c.getName(), c);
 			} else if (job.equals("Wizard")) {
 				Wizard c = new Wizard(name, hp, atk, originalStatus, teamNum);
-				charaList.put(c.getName(), c);
+				characterList.put(c.getName(), c);
 			} else {
 				System.out.println("Error");
 				return;

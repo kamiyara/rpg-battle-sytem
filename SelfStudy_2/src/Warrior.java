@@ -21,7 +21,7 @@ public class Warrior extends Character implements Attackable {
 	//UniqueSkill Of War(Shield Bash)
 	protected double uniqueSkill() {
 		skillRate = 0.6;
-		System.out.println("Warrior " + name + "'s Shidld Bash");
+		System.out.println("Warrior " + name + "'s Shield Bash");
 		return (def + atk) * skillRate;
 	}
 
@@ -49,7 +49,7 @@ public class Warrior extends Character implements Attackable {
 	@Override
 	//BeAttacked Of War
 	protected void beAttacked(double dmg) {
-		if (cheakDead()) {
+		if (checkDead()) {
 			System.out.println("Warrior " + name + " has already been dead");
 			return;
 		}
@@ -66,7 +66,7 @@ public class Warrior extends Character implements Attackable {
 	}
 
 	@Override
-	//Cheak Attakable
+	//Check Attakable
 	public boolean attackable() {
 		if (hp <= 0) {
 			return false;

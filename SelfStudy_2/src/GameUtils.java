@@ -48,18 +48,18 @@ public class GameUtils {
 		sorted.forEach(c -> System.out.println("・" + c.getName() + " Atk:" + c.getAtk() + " Team" + c.getTeamNum()));
 	}
 
-	//Cheak Game Finish
-	public boolean cheakGameFinish() {
+	//Check Game Finish
+	public boolean checkGameFinish() {
 		
 		//Determining GameFinish
 		if (characterList.values().stream()
 				.filter(c -> c.getTeamNum() == 1)
-				.allMatch(c -> c.cheakDead())) {
+				.allMatch(c -> c.checkDead())) {
 			System.out.println("Team2 Victory");
 			return true;
 		} else if (characterList.values().stream()
 				.filter(c -> c.getTeamNum() == 2)
-				.allMatch(c -> c.cheakDead())) {
+				.allMatch(c -> c.checkDead())) {
 			System.out.println("Team1 Victory");
 			return true;
 		

@@ -77,7 +77,7 @@ public class Wizard extends Character implements Attackable {
 	@Override
 	//BeAttacked Of Wiz
 	protected void beAttacked(double dmg) {
-		if (cheakDead()) {
+		if (checkDead()) {
 			System.out.println("Wizard " + name + " has already been dead.");
 			return;
 		}
@@ -89,7 +89,7 @@ public class Wizard extends Character implements Attackable {
 	}
 
 	@Override
-	//Cheak Attakable
+	//Check Attakable
 	public boolean attackable() {
 		if (hp <= 0) {
 			return false;

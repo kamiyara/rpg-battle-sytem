@@ -8,14 +8,14 @@ public class GameField {
 	//Make Scanner
 	static Scanner scanner = new Scanner(System.in);
 	//Make Common HashMap
-	static Map<String, Character> charaList = new HashMap<>();
+	static Map<String, Character> characterList = new HashMap<>();
 	//Make Team List
 	static List<String> team1List = new ArrayList<>();
 	static List<String> team2List = new ArrayList<>();
 	//Make Other Class instance
-	static BattleManager battleManager = new BattleManager(charaList, team1List, team2List);
-	static CharacterFactory characterFactory = new CharacterFactory(charaList, team1List, team2List);
-	static GameUtils gameUtils = new GameUtils(charaList);
+	static BattleManager battleManager = new BattleManager(characterList, team1List, team2List);
+	static CharacterFactory characterFactory = new CharacterFactory(characterList, team1List, team2List);
+	static GameUtils gameUtils = new GameUtils(characterList);
 
 	public static void main(String[] args) {
 
@@ -57,8 +57,8 @@ public class GameField {
 						battleManager.processCharacterTurn(battleCount, team1List.get(i));
 						System.out.println();
 
-						//Cheak Winner
-						if (gameUtils.cheakGameFinish()) {
+						//Check Winner
+						if (gameUtils.checkGameFinish()) {
 							System.out.println("Game End");
 							return;
 						}
@@ -72,8 +72,8 @@ public class GameField {
 						battleManager.processCharacterTurn(battleCount, team2List.get(i));
 						System.out.println();
 
-						//Cheak Winner
-						if (gameUtils.cheakGameFinish()) {
+						//Check Winner
+						if (gameUtils.checkGameFinish()) {
 							System.out.println("Game End");
 							return;
 						}
@@ -89,7 +89,7 @@ public class GameField {
 			}
 			//Game End When TurnCount Over MaxTurn
 			if (allTurnCount == maxTurn) {
-				System.out.println("Drow");
+				System.out.println("Draw");
 				System.out.println("Game End");
 			}
 			allTurnCount++;

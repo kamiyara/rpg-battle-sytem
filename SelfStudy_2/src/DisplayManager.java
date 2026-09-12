@@ -4,11 +4,11 @@ import java.util.Map;
 
 public class DisplayManager {
 	///Make CharaList
-	Map<String, Character> charaList = new HashMap<>();
+	Map<String, Character> characterList = new HashMap<>();
 
 	//Input CharaList
 	DisplayManager(Map<String, Character> charaList) {
-		this.charaList = charaList;
+		this.characterList = charaList;
 	}
 
 	//Execute Display TeamMember
@@ -26,9 +26,9 @@ public class DisplayManager {
 			for (int i = 0; i < teamList.size(); i++) {
 
 				//Make TargetChara
-				Character targetChara = charaList.get(teamList.get(i));
+				Character targetChara = characterList.get(teamList.get(i));
 
-				//Cheak TargetChara Alive
+				//Check TargetChara Alive
 				if (targetChara instanceof Attackable attackableChara && attackableChara.attackable()) {
 					System.out.print(displayNumber + "," + teamList.get(i) + "\t");
 					displayNumber += 1;

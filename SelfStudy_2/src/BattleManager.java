@@ -6,37 +6,37 @@ import java.util.Scanner;
 
 public class BattleManager {
 
-	///MakeCharaList
-	Map<String, Character> charaList = new HashMap<>();
+	///Make CharaList
+	Map<String, Character> characterList = new HashMap<>();
 	//MakeTeamList
 	List<String> team1List = new ArrayList<>();
 	List<String> team2List = new ArrayList<>();
-	//MakeScanner
+	//Make Scanner
 	Scanner scanner = new Scanner(System.in);
 	int selectedNum;
-	//MakeGameUtilsInstance
+	//Make Game Utils Instance
 	GameUtils gameUtils;
 	DisplayManager displayManager;
-	//MakeLoopEnd
+	//Make LoopEnd
 	static boolean roopEnd1 = false;
 	static boolean roopEnd2 = false;
 
 	BattleManager(Map<String, Character> charaList, List<String> team1List, List<String> team2List) {
-		this.charaList = charaList;
+		this.characterList = charaList;
 		this.team1List = team1List;
 		this.team2List = team2List;
 		gameUtils = new GameUtils(charaList);
 		displayManager = new DisplayManager(charaList);
 	}
 
-	//processCharacterTurn 
+	//process Character Turn 
 	public void processCharacterTurn(int whichTeam, String attacker) {
 
-		//Cheak attacker is attackable ☆UpdateCode
-		Character chara = charaList.get(attacker);
+		//Check attacker is attackable
+		Character chara = characterList.get(attacker);
 		if (chara instanceof Attackable) {
 			if (!(((Attackable) chara).attackable())) {
-				System.out.println(attacker + " has alredy been dead.");
+				System.out.println(attacker + " has already been dead.");
 				return;
 			}
 		}
@@ -72,7 +72,7 @@ public class BattleManager {
 
 	//Battle Program 1,NormalSkill 2,UniqueSkill 3,UniqueAction 4,SpecialSkill
 	public void executeAction(String attacker, int whichTeam) {
-		Character chara = charaList.get(attacker);
+		Character chara = characterList.get(attacker);
 		double dmg = 0;
 		String target;
 		//Reset roopEnd2 And Roop Start
@@ -112,7 +112,7 @@ public class BattleManager {
 					}
 
 					//Caluculate Take Damage
-					charaList.get(target).beAttacked(dmg);
+					characterList.get(target).beAttacked(dmg);
 					roopEnd1 = true;
 					roopEnd2 = true;
 

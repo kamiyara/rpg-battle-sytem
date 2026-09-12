@@ -48,8 +48,8 @@ public abstract class Character {
 		}
 	}
 
-	//Cheak dead
-	protected boolean cheakDead() {
+	//Check dead
+	protected boolean checkDead() {
 		if (hp <= 0) {
 			return true;
 		} else {
