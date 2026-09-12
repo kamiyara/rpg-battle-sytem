@@ -1,0 +1,47 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class CharacterFactory {
+	///MakeCharaList
+	Map<String, Character> charaList = new HashMap<>();
+
+	//MakeTeamList
+	List<String> team1List = new ArrayList<>();
+	List<String> team2List = new ArrayList<>();
+
+	CharacterFactory(Map<String, Character> charaList, List<String> team1List, List<String> team2List) {
+		this.charaList = charaList;
+		this.team1List = team1List;
+		this.team2List = team2List;
+	}
+
+	//createCharacter
+	public void createCharacter(String job, String name, int hp, int atk,
+			int originalStatus, int teamNum) {
+		try {
+			if (job.equals("Warrior")) {
+				Warrior c = new Warrior(name, hp, atk, originalStatus, teamNum);
+				charaList.put(c.getName(), c);
+			} else if (job.equals("Wizard")) {
+				Wizard c = new Wizard(name, hp, atk, originalStatus, teamNum);
+				charaList.put(c.getName(), c);
+			} else {
+				System.out.println("Error");
+				return;
+			}
+			if (teamNum == 1) {
+				team1List.add(name);
+			} else if (teamNum == 2) {
+				team2List.add(name);
+			} else {
+				System.out.println("teamNumError");
+			}
+			//後でしっかり書く
+		} catch (Exception e) {
+			System.out.println("Error\n" + e.getMessage());
+			e.printStackTrace();
+		}
+	}
+}
