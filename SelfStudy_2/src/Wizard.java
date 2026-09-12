@@ -1,6 +1,6 @@
 
 public class Wizard extends Character implements Attackable {
-	//Original status of Wiz
+	//Original Status Of Wiz
 	protected int maxMp;
 	protected int mp;
 
@@ -16,7 +16,7 @@ public class Wizard extends Character implements Attackable {
 	}
 
 	@Override
-	//Normal Skill of Wiz(FireBall)
+	//Normal Skill Of Wiz(FireBall)
 	protected double normalSkill() {
 		consumeMp = 20;
 		if (cheakMpRemain(consumeMp)) {
@@ -32,7 +32,7 @@ public class Wizard extends Character implements Attackable {
 	}
 
 	@Override
-	//UniqueSkill of wiz(Magic Attack)
+	//UniqueSkill Of Wiz(Magic Attack)
 	protected double uniqueSkill() {
 		consumeMp = 40;
 		if (cheakMpRemain(consumeMp)) {
@@ -59,7 +59,7 @@ public class Wizard extends Character implements Attackable {
 	}
 
 	@Override
-	//SpecialSkill of Wiz(Explosion)
+	//SpecialSkill Of Wiz(Explosion)
 	protected double specialSkill() {
 		consumeMp = mp;
 		if (cheakMpRemain(consumeMp)) {
@@ -75,7 +75,7 @@ public class Wizard extends Character implements Attackable {
 	}
 
 	@Override
-	//BeAttacked of Wiz
+	//BeAttacked Of Wiz
 	protected void beAttacked(double dmg) {
 		if (cheakDead()) {
 			System.out.println("Wizard " + name + " has already been dead.");
@@ -98,7 +98,7 @@ public class Wizard extends Character implements Attackable {
 		}
 	}
 
-	//ChackMpRemain
+	//Chack Mp Remain
 	private boolean cheakMpRemain(int consumeMp) {
 		if (mp >= consumeMp) {
 			return true;
@@ -107,14 +107,14 @@ public class Wizard extends Character implements Attackable {
 		}
 	}
 
-	//Upper Cap Hp at MaxMp
+	//Upper Cap Hp At MaxMp
 	private void upperCapMp() {
 		if (mp > maxMp) {
 			mp = maxMp;
 		}
 	}
 
-	//displayMessageLowMp
+	//Display Low Mp Message
 	private void displayLowMpMessage() {
 		System.out.println(name + " doesn't have enough Mp");
 	}

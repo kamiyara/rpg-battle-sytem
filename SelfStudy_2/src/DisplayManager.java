@@ -3,6 +3,7 @@ import java.util.List;
 public class DisplayManager {
 
 	public static void displayTeamMember(List<String> teamList) {
+		//Confirming Team Exist 
 		if (teamList == null) {
 			System.out.println("This team is unknown");
 		} else {

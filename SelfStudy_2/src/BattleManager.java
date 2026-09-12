@@ -27,57 +27,63 @@ public class BattleManager {
 		gameUtils = new GameUtils(charaList);
 	}
 
-	//processCharacterTurn
+	//processCharacterTurn 
 	public void processCharacterTurn(int whichTeam, String attacker) {
 
-		//Cheak attacker is attackable
-		if (charaList.get(attacker) instanceof Warrior) {
-			if (!((Warrior) (charaList.get(attacker))).attackable()) {
-				System.out.println("Warrior " + attacker + " has alredy been dead.");
-				return;
-			}
-		}
-		if (charaList.get(attacker) instanceof Wizard) {
-			if (!((Wizard) (charaList.get(attacker))).attackable()) {
-				System.out.println("Wizard " + attacker + " has alredy been dead.");
+		//Cheak attacker is attackable ☆UpdateCode
+		Character chara = charaList.get(attacker);
+		if (chara instanceof Attackable) {
+			if (!(((Attackable) chara).attackable())) {
+				System.out.println(attacker + " has alredy been dead.");
 				return;
 			}
 		}
 
-		System.out.println("Action Turn Of " + charaList.get(attacker).getJob() + " " + attacker);
-		try {
-			//Reset roopEnd
-			roopEnd1 = false;
-			while (!roopEnd1) {
+		//Display ActionTurn Message
+		System.out.println("Action Turn Of " + chara.getJob() + " " + attacker);
+		
+		//Reset roopEnd And RoopStart
+		roopEnd1 = false;
+		while (!roopEnd1) {
+			try {
+				
+				//Display ActionList And Scan The Select
 				System.out.println("Action List\n1,attack\t2,other");
 				selectedNum = Integer.parseInt(scanner.nextLine());
+				
+				//Execute Selected Action
 				switch (selectedNum) {
-				case 1://AttackAction
+				case 1:
 					executeAction(attacker, whichTeam);
 					break;
-				case 2://OtherAction
+				case 2:
 					otherAction();
 					break;
 				}
+
+				//Error Message
+			} catch (Exception e) {
+				System.out.println("Error in Battle Turn Progression\n" + e.getMessage());
 			}
-			//後でしっかり書く
-		} catch (Exception e) {
-			System.out.println("Error in Battle Turn Progression\n" + e.getMessage());
 		}
 	}
 
 	//Battle Program 1,NormalSkill 2,UniqueSkill 3,UniqueAction 4,SpecialSkill
 	public void executeAction(String attacker, int whichTeam) {
+		Character chara = charaList.get(attacker);
 		double dmg = 0;
 		String target;
+		//Reset roopEnd2 And Roop Start
 		roopEnd2 = false;
 		while (!roopEnd2) {
 			try {
+				//Display Skill Select Message
 				System.out
-						.println(charaList.get(attacker).getJob() + " " + attacker
+						.println(chara.getJob() + " " + attacker
 								+ "'s action select\n1,NormalSkill\t2,UniqueSkill\n3,UniqueAction\t4,SpecialSkill");
 				selectedNum = Integer.parseInt(scanner.nextLine());
 
+				//Execute Skill Choose Target
 				if (selectedNum == 1 || selectedNum == 2 || selectedNum == 4) {
 					System.out.println("What Character is target？");
 					if (whichTeam == 1) {
@@ -90,26 +96,36 @@ public class BattleManager {
 						System.out.println("Unknown team");
 						target = null;
 					}
+
+					//Caluculate Skill Damage
 					switch (selectedNum) {
 					case 1:
-						dmg = charaList.get(attacker).normalSkill();
+						dmg = chara.normalSkill();
 						break;
 					case 2:
-						dmg = charaList.get(attacker).uniqueSkill();
+						dmg = chara.uniqueSkill();
 						break;
 					case 4:
-						dmg = charaList.get(attacker).specialSkill();
+						dmg = chara.specialSkill();
 					}
+
+					//Caluculate Take Damage
 					charaList.get(target).beAttacked(dmg);
 					roopEnd1 = true;
 					roopEnd2 = true;
+
+					//Execute No Damage Action
 				} else if (selectedNum == 3) {
-					charaList.get(attacker).uniqueAction();
+					chara.uniqueAction();
 					roopEnd1 = true;
 					roopEnd2 = true;
+
+					//Display Error Message
 				} else {
 					System.out.println("BattleProgramError");
 				}
+
+				//Display Error Message
 			} catch (Exception e) {
 				System.out.println("BattleProgramError");
 			}
@@ -118,9 +134,13 @@ public class BattleManager {
 
 	//Battle OtherAction
 	public void otherAction() {
+
+		//Select What Other Action To Do
 		System.out.println(
 				"1,Display all character data\n2,Display higher Hp Character\n3,Display sorted Atk descending order List");
 		selectedNum = Integer.parseInt(scanner.nextLine());
+
+		//Execute Selected Action
 		switch (selectedNum) {
 		case 1:
 			gameUtils.displayAllCharacterinfo();

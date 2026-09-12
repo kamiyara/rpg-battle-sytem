@@ -4,23 +4,26 @@ import java.util.List;
 import java.util.Map;
 
 public class CharacterFactory {
-	///MakeCharaList
+	///Make CharaList
 	Map<String, Character> charaList = new HashMap<>();
 
-	//MakeTeamList
+	//Make TeamList
 	List<String> team1List = new ArrayList<>();
 	List<String> team2List = new ArrayList<>();
-
+	
+	//Input All List
 	CharacterFactory(Map<String, Character> charaList, List<String> team1List, List<String> team2List) {
 		this.charaList = charaList;
 		this.team1List = team1List;
 		this.team2List = team2List;
 	}
 
-	//createCharacter
+	//Create Character
 	public void createCharacter(String job, String name, int hp, int atk,
 			int originalStatus, int teamNum) {
 		try {
+			
+			//Separate By Job
 			if (job.equals("Warrior")) {
 				Warrior c = new Warrior(name, hp, atk, originalStatus, teamNum);
 				charaList.put(c.getName(), c);
@@ -31,6 +34,8 @@ public class CharacterFactory {
 				System.out.println("Error");
 				return;
 			}
+			
+			//Separate By TeamNum
 			if (teamNum == 1) {
 				team1List.add(name);
 			} else if (teamNum == 2) {
@@ -38,7 +43,8 @@ public class CharacterFactory {
 			} else {
 				System.out.println("teamNumError");
 			}
-			//後でしっかり書く
+			
+			//Error Message
 		} catch (Exception e) {
 			System.out.println("Error\n" + e.getMessage());
 			e.printStackTrace();

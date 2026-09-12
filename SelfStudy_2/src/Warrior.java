@@ -3,14 +3,14 @@ public class Warrior extends Character implements Attackable {
 	protected int def;
 	protected boolean defending = false;
 
-	//InitialSetting
+	//Initial Setting
 	Warrior(String name, int maxHp, int atk, int def, int teamNum) {
 		super(name, maxHp, atk, teamNum);
 		this.def = def;
 	}
 
 	@Override
-	//NormalSkill of War(Smash)
+	//NormalSkill Of War(Smash)
 	protected double normalSkill() {
 		skillRate = 1.1;
 		System.out.println("Warrior " + name + "'s Smash");
@@ -18,7 +18,7 @@ public class Warrior extends Character implements Attackable {
 	}
 
 	@Override
-	//UniqueSkill of War(Shield Bash)
+	//UniqueSkill Of War(Shield Bash)
 	protected double uniqueSkill() {
 		skillRate = 0.6;
 		System.out.println("Warrior " + name + "'s Shidld Bash");
@@ -26,7 +26,7 @@ public class Warrior extends Character implements Attackable {
 	}
 
 	@Override
-	//UniqueAction of War
+	//UniqueAction Of War
 	protected void uniqueAction() {
 		int recoveryHp = 30;
 		int beforeHp = hp;
@@ -39,7 +39,7 @@ public class Warrior extends Character implements Attackable {
 	}
 
 	@Override
-	//SpecialSkill of War
+	//SpecialSkill Of War
 	protected double specialSkill() {
 		skillRate = 1.6;
 		System.out.println("Warrior " + name + "'s GigaSlash");
@@ -47,7 +47,7 @@ public class Warrior extends Character implements Attackable {
 	}
 
 	@Override
-	//BeAttacked of War
+	//BeAttacked Of War
 	protected void beAttacked(double dmg) {
 		if (cheakDead()) {
 			System.out.println("Warrior " + name + " has already been dead");
