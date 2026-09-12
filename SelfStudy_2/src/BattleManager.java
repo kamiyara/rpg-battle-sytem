@@ -16,6 +16,7 @@ public class BattleManager {
 	int selectedNum;
 	//MakeGameUtilsInstance
 	GameUtils gameUtils;
+	DisplayManager displayManager;
 	//MakeLoopEnd
 	static boolean roopEnd1 = false;
 	static boolean roopEnd2 = false;
@@ -25,6 +26,7 @@ public class BattleManager {
 		this.team1List = team1List;
 		this.team2List = team2List;
 		gameUtils = new GameUtils(charaList);
+		displayManager = new DisplayManager(charaList);
 	}
 
 	//processCharacterTurn 
@@ -41,16 +43,16 @@ public class BattleManager {
 
 		//Display ActionTurn Message
 		System.out.println("Action Turn Of " + chara.getJob() + " " + attacker);
-		
+
 		//Reset roopEnd And RoopStart
 		roopEnd1 = false;
 		while (!roopEnd1) {
 			try {
-				
+
 				//Display ActionList And Scan The Select
 				System.out.println("Action List\n1,attack\t2,other");
 				selectedNum = Integer.parseInt(scanner.nextLine());
-				
+
 				//Execute Selected Action
 				switch (selectedNum) {
 				case 1:
@@ -87,10 +89,10 @@ public class BattleManager {
 				if (selectedNum == 1 || selectedNum == 2 || selectedNum == 4) {
 					System.out.println("What Character is target？");
 					if (whichTeam == 1) {
-						DisplayManager.displayTeamMember(team2List);
+						displayManager.displayTeamMember(team2List);
 						target = team2List.get(Integer.parseInt(scanner.nextLine()) - 1);
 					} else if (whichTeam == 2) {
-						DisplayManager.displayTeamMember(team1List);
+						displayManager.displayTeamMember(team1List);
 						target = team1List.get(Integer.parseInt(scanner.nextLine()) - 1);
 					} else {
 						System.out.println("Unknown team");
