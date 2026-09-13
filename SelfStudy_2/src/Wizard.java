@@ -1,5 +1,5 @@
 
-public class Wizard extends Character implements Attackable {
+public class Wizard extends Character {
 	//Original Status Of Wiz
 	protected int maxMp;
 	protected int mp;
@@ -86,16 +86,6 @@ public class Wizard extends Character implements Attackable {
 		capHp();
 		System.out.println("Wizard " + name + " takes " + (int) dmg + "damages");
 		System.out.println("Hp:" + beforeHp + "→" + hp);
-	}
-
-	@Override
-	//Check Attakable
-	public boolean attackable() {
-		if (hp <= 0) {
-			return false;
-		} else {
-			return true;
-		}
 	}
 
 	//Chack Mp Remain

@@ -1,4 +1,4 @@
-public class Warrior extends Character implements Attackable {
+public class Warrior extends Character {
 	//Original status of War
 	protected int def;
 	protected boolean defending = false;
@@ -63,16 +63,6 @@ public class Warrior extends Character implements Attackable {
 		capHp();
 		System.out.println("Warrior " + name + " takes " + (int) dmg + "damages");
 		System.out.println("Hp:" + beforeHp + "→" + hp);
-	}
-
-	@Override
-	//Check Attakable
-	public boolean attackable() {
-		if (hp <= 0) {
-			return false;
-		} else {
-			return true;
-		}
 	}
 
 	//Getter

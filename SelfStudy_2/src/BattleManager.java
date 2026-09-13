@@ -29,16 +29,14 @@ public class BattleManager {
 		displayManager = new DisplayManager(charaList);
 	}
 
-	//process Character Turn 
+	//Process Character Turn 
 	public void processCharacterTurn(int whichTeam, String attacker) {
 
 		//Check attacker is attackable
 		Character chara = characterList.get(attacker);
-		if (chara instanceof Attackable) {
-			if (!(((Attackable) chara).attackable())) {
-				System.out.println(attacker + " has already been dead.");
-				return;
-			}
+		if (chara.attackable()) {
+			System.out.println(attacker + " has already been dead.");
+			return;
 		}
 
 		//Display ActionTurn Message

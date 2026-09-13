@@ -29,7 +29,7 @@ public class DisplayManager {
 				Character targetChara = characterList.get(teamList.get(i));
 
 				//Check TargetChara Alive
-				if (targetChara instanceof Attackable attackableChara && attackableChara.attackable()) {
+				if (targetChara.attackable()) {
 					System.out.print(displayNumber + "," + teamList.get(i) + "\t");
 					displayNumber += 1;
 				}

@@ -57,6 +57,15 @@ public abstract class Character {
 		}
 	}
 
+	//Attackable
+	protected boolean attackable() {
+		if (!(checkDead())) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	//Getter
 	public String getName() {
 		return name;
