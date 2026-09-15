@@ -34,7 +34,7 @@ public class BattleManager {
 
 		//Check attacker is attackable
 		Character chara = characterList.get(attacker);
-		if (chara.attackable()) {
+		if (!chara.attackable()) {
 			System.out.println(attacker + " has already been dead.");
 			return;
 		}
@@ -73,6 +73,8 @@ public class BattleManager {
 		Character chara = characterList.get(attacker);
 		double dmg = 0;
 		String target;
+		int enemyTeamNum;
+		int characterNum;
 		//Reset roopEnd2 And Roop Start
 		roopEnd2 = false;
 		while (!roopEnd2) {
@@ -85,17 +87,30 @@ public class BattleManager {
 
 				//Execute Skill Choose Target
 				if (selectedNum == 1 || selectedNum == 2 || selectedNum == 4) {
+					//Display Message 
 					System.out.println("What Character is target？");
+
+					//Set Enemy Team Num
 					if (whichTeam == 1) {
-						displayManager.displayTeamMember(team2List);
-						target = team2List.get(Integer.parseInt(scanner.nextLine()) - 1);
+						enemyTeamNum = 2;
 					} else if (whichTeam == 2) {
-						displayManager.displayTeamMember(team1List);
-						target = team1List.get(Integer.parseInt(scanner.nextLine()) - 1);
+						enemyTeamNum = 1;
 					} else {
 						System.out.println("Unknown team");
-						target = null;
+						enemyTeamNum = -1;
 					}
+
+					//Display Alive Member Of EnemyTeam 
+					displayManager.displayTeamMember(enemyTeamNum);
+
+					//Make Alive Member List
+					List<Character> aliveTeamMember = gameUtils.getAliveTeamMemberList(enemyTeamNum);
+
+					//Adjust Scan ChracterNumber(-1)
+					characterNum = Integer.parseInt(scanner.nextLine()) - 1;
+
+					//Input Target Name
+					target = aliveTeamMember.get(characterNum).getName();
 
 					//Caluculate Skill Damage
 					switch (selectedNum) {

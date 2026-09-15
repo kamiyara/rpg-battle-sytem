@@ -5,37 +5,27 @@ import java.util.Map;
 public class DisplayManager {
 	///Make CharaList
 	Map<String, Character> characterList = new HashMap<>();
+	//Make GameUtils Instance
+	GameUtils gameUtils;
 
 	//Input CharaList
 	DisplayManager(Map<String, Character> charaList) {
 		this.characterList = charaList;
+		gameUtils = new GameUtils(charaList);
 	}
 
 	//Execute Display TeamMember
-	public void displayTeamMember(List<String> teamList) {
-
-		//Confirming Team Exist 
-		if (teamList == null) {
-			System.out.println("This team is unknown");
-		} else {
-
-			//Make DisplayNumber And TargetChara
-			int displayNumber = 1;
-
-			//Displaying All Attackable TeamMember
-			for (int i = 0; i < teamList.size(); i++) {
-
-				//Make TargetChara
-				Character targetChara = characterList.get(teamList.get(i));
-
-				//Check TargetChara Alive
-				if (targetChara.attackable()) {
-					System.out.print(displayNumber + "," + teamList.get(i) + "\t");
-					displayNumber += 1;
-				}
-
-			}
-			System.out.println("");
+	public void displayTeamMember(int teamNum) {
+		//Make DisplayNumber
+		int displayNumber;
+		//Make Alive TeamMember List
+		List<Character> aliveTeamMember = gameUtils.getAliveTeamMemberList(teamNum);
+		//Loop AliveTeamMember Size
+		for (int i = 0; i < aliveTeamMember.size(); i++) {
+			//Display AliveTeamMember
+			displayNumber = i + 1;
+			System.out.print(displayNumber + "," + aliveTeamMember.get(i).getName() + "\t");
 		}
+		System.out.println("");
 	}
 }
