@@ -69,7 +69,7 @@ public class GameUtils {
 	}
 
 	//Get Alive Team Member
-	public List getAliveTeamMemberList(int teamNum) {
+	public List<Character> getAliveTeamMemberList(int teamNum) {
 		List<Character> aliveTeamCharacter = characterList.values().stream()
 				.filter(c -> c.getTeamNum() == teamNum)
 				.filter(c -> c.checkDead() == false)
